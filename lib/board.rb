@@ -2,21 +2,24 @@ require_relative 'pieces'
 
 class Board
   def initialize
-    @board = Array.new(8) { Array.new (8) }
+    @board = Array.new(8) { Array.new(8) }
     populate
   end
 
   def display
-    @board.each do |row|
+    puts ' abcdefgh'
+    @board.each_with_index do |row, i|
+      print 8 - i
       row.each do |tile|
         print tile ? tile.symbol : ' '
       end
-      puts
+      puts 8 - i
     end
+    puts ' abcdefgh'
   end
 
   def populate
-    colors = ['black', 'white']
+    colors = %w[black white]
     row = [[0, 1], [7, 6]]
     colors.each_with_index do |color, i|
       @board[row[i][0]] = [
@@ -29,7 +32,11 @@ class Board
         Knight.new(color),
         Rook.new(color)
       ]
-      @board[row[i][1]].map! { |tile| Pawn.new(color) }
+      @board[row[i][1]].map! { Pawn.new(color) }
     end
+  end
+
+  def update(move)
+
   end
 end
