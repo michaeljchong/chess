@@ -8,7 +8,10 @@ class Board
 
   def display
     @board.each do |row|
-      p row
+      row.each do |tile|
+        print tile ? tile.symbol : ' '
+      end
+      puts
     end
   end
 
