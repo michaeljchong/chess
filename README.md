@@ -1,6 +1,6 @@
-<h1>Title</h1>
+<h1>Chess</h1>
 
-<p>description. Check out the <a href=''>final product</a>.</p>
+<p>A complete game of chess implemented on the command line. Check out the <a href=''>final product</a>.</p>
 
 <h2>Lesson's Learned:</h2>
 <ul>
