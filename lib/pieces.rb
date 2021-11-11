@@ -1,6 +1,7 @@
 class Pieces
-  @color = nil
-  
+  def initialize(color)
+    @color = color
+  end
 end
 
 class Pawn < Pieces
