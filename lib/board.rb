@@ -36,6 +36,10 @@ class Board
     end
   end
 
+  def position(row, col)
+    @board[row][col]
+  end
+
   def update(move)
 
   end
