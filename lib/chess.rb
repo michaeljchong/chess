@@ -15,6 +15,10 @@ class Game
     # end
   end
 
+  def switch_player
+    @current_player = @current_player == 'white' ? 'black' : 'white'
+  end
+
   def game_over?
 
   end
