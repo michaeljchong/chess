@@ -1,6 +1,6 @@
 class Pieces
-  attr_reader :symbol
-  
+  attr_reader :color, :symbol
+
   def initialize(color, symbol)
     @color = color
     @symbol = symbol
@@ -48,4 +48,3 @@ class King < Pieces
     super(color, symbol)
   end
 end
-
