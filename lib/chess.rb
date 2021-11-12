@@ -34,17 +34,21 @@ class Game
     position.length == 2 && ('a'..'h').include?(position[0]) && ('1'..'8').include?(position[1])
   end
 
-  def correct_position?(position)
+  def correct_position?(position, choosing_piece = true)
     letters = %w[a b c d e f g h]
     col = letters.index position[0]
     row = 8 - position[1].to_i
-    @board.position(row, col).color == @current_player
+    if choosing_piece
+      @board.position(row, col) ? @board.position(row, col).color == @current_player : false
+    else
+      @board.position(row, col) ? @board.position(row, col).color != @current_player : true
+    end
   end
 
   def choose_move
     print "Player #{@current_player} - Enter the position you would like to move to (ex. c4): "
     move = gets.chomp
-    until valid_input?(move) && !correct_position?(move)
+    until valid_input?(move) && correct_position?(move, false)
       print 'Invalid move, enter the position you would like to move to (ex. c4): '
       move = gets.chomp
     end
