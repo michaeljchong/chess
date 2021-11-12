@@ -18,13 +18,23 @@ class Game
   def player_move
     piece = choose_piece
     move = choose_move
-  #   until valid move
-  #     receive current player's move
-  #       select piece to move
-  #       select position to move to
   end
 
   def choose_piece
+    print "Player #{@current_player} - Enter the current position of the piece you would like to move (ex. c2): "
+    piece = gets.chomp
+    until valid_input?(piece) && correct_position?(piece)
+      print 'Invalid piece, enter the current position of the piece you would like to move (ex. c2): '
+      piece = gets.chomp
+    end
+    piece
+  end
+
+  def valid_input?(position)
+
+  end
+
+  def correct_position?(position)
 
   end
 
