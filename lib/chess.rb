@@ -31,15 +31,24 @@ class Game
   end
 
   def valid_input?(position)
-
+    position.length == 2 && ('a'..'h').include?(position[0]) && ('1'..'8').include?(position[1])
   end
 
   def correct_position?(position)
-
+    letters = %w[a b c d e f g h]
+    col = letters.index position[0]
+    row = 8 - position[1].to_i
+    @board.position(row, col).color == @current_player
   end
 
   def choose_move
-
+    print "Player #{@current_player} - Enter the position you would like to move to (ex. c4): "
+    move = gets.chomp
+    until valid_input?(move) && !correct_position?(move)
+      print 'Invalid move, enter the position you would like to move to (ex. c4): '
+      move = gets.chomp
+    end
+    move
   end
 
   def switch_player
