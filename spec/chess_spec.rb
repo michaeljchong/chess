@@ -27,4 +27,16 @@ describe Game do
       end
     end
   end
+
+  describe '#translate_position' do
+    it 'returns a zero-based row and column' do
+      expect(game.translate_position('a1')).to eq([7,0])
+    end
+    it 'returns an inverse relationship between input and output for the row' do
+      expect(game.translate_position('a8')).to eq([0,0])
+    end
+    it 'returns the last row and last column of a 2D 8x8 array' do
+      expect(game.translate_position('h1')).to eq([7,7])
+    end
+  end
 end
