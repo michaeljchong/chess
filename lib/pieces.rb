@@ -1,3 +1,5 @@
+require_relative 'board'
+
 class Pieces
   attr_reader :color, :symbol
 
@@ -11,6 +13,25 @@ class Pawn < Pieces
   def initialize(color)
     symbol = color == 'white' ? "\u2659" : "\u265f"
     super(color, symbol)
+  end
+
+  def moves?(row, col, board)
+    if @color == 'white' && row.positive?
+      board.position(row - 1, col).nil? ||
+        (col.positive? && board.position(row - 1, col - 1) && board.position(row - 1, col - 1).color == 'black') ||
+        (col < 7 && board.position(row - 1, col + 1) && board.position(row - 1, col + 1).color == 'black')
+    elsif @color == 'black' && row < 7
+      board.position(row + 1, col).nil? ||
+        (col.positive? && board.position(row + 1, col - 1) && board.position(row + 1, col - 1).color == 'white') ||
+        (col < 7 && board.position(row + 1, col + 1) && board.position(row + 1, col + 1).color == 'white')
+    end
+  end
+
+  def valid_move?(start_row, start_col, end_row, end_col, board)
+    # one move forward if no other pieces are in the way
+    # two moves forward if no ther pieces are in the way and pawn hasn't moved yet
+    # diagonal forward if attacking opponent
+    # en passant - if opponent moved two forward on previous turn and opponents pawn is next to our pawn, can move diagonal forward behind opponents pawn
   end
 end
 

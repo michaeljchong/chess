@@ -23,7 +23,7 @@ class Game
   def choose_from
     print "Player #{@current_player} - Enter the current position of the piece you would like to move (ex. c2): "
     from = gets.chomp
-    until valid_input?(from) && valid_position?(from) && moves_avilable?(from)
+    until valid_input?(from) && valid_position?(from) && moves_available?(from)
       print 'Invalid position, enter the current position of the piece you would like to move (ex. c2): '
       from = gets.chomp
     end
@@ -51,9 +51,9 @@ class Game
     [row, col]
   end
 
-  def valid_position?(position, choosing_piece = true)
+  def valid_position?(position, choosing_from = true)
     row, col = translate_position(position)
-    if choosing_piece
+    if choosing_from
       @board.position(row, col) ? @board.position(row, col).color == @current_player : false
     else
       @board.position(row, col) ? @board.position(row, col).color != @current_player : true
@@ -61,7 +61,8 @@ class Game
   end
 
   def moves_available?(position)
-
+    row, col = translate_position(position)
+    @board.position(row, col).moves?(row, col, @board)
   end
 
   def valid_movement?(start_pos, end_pos)
@@ -80,4 +81,4 @@ class Game
   end
 end
 
-# Game.new.play
+Game.new.play
